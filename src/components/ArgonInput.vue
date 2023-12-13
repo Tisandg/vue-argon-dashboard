@@ -11,8 +11,11 @@
         :name="name"
         :id="id"
         :value="value"
+        @input="$emit('update:value', $event.target.value)"
         :placeholder="placeholder"
         :isRequired="isRequired"
+        :success="success"
+        :error="error"
       />
       <span v-if="iconDir === 'right'" class="input-group-text">
         <i :class="getIcon(icon)"></i>
@@ -22,6 +25,11 @@
 </template>
 
 <script>
+import { defineProps, defineEmits } from 'vue';
+
+defineProps(['value'])
+defineEmits(['update:value'])
+
 export default {
   name: "argon-input",
   props: {
@@ -30,6 +38,14 @@ export default {
       default: "default",
     },
     valid: {
+      type: Boolean,
+      default: false,
+    },
+    success: {
+      type: Boolean,
+      default: false,
+    },
+    error: {
       type: Boolean,
       default: false,
     },
