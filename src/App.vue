@@ -17,26 +17,24 @@ Coded by www.creative-tim.com
     v-show="this.$store.state.layout === 'landing'"
     class="landing-bg h-100 bg-gradient-primary position-fixed w-100"
   ></div>
+
   <sidenav
     :custom_class="this.$store.state.mcolor"
-    :class="[
-      this.$store.state.isTransparent,
-      this.$store.state.isRTL ? 'fixed-end' : 'fixed-start'
-    ]"
+    :class="[this.$store.state.isTransparent,this.$store.state.isRTL ? 'fixed-end' : 'fixed-start']"
     v-if="this.$store.state.showSidenav"
   />
   <main
     class="main-content position-relative max-height-vh-100 h-100 border-radius-lg"
   >
     <!-- nav -->
-    <!-- <navbar
+    <navbar
       :class="[navClasses]"
       :textWhite="
         this.$store.state.isAbsolute ? 'text-white opacity-8' : 'text-white'
       "
       :minNav="navbarMinimize"
       v-if="this.$store.state.showNavbar"
-    /> -->
+    />
 
     <router-view />
     <app-footer v-show="this.$store.state.showFooter" />
@@ -52,20 +50,21 @@ Coded by www.creative-tim.com
 <script>
 import Sidenav from "./examples/Sidenav";
 import Configurator from "@/examples/Configurator.vue";
-// import Navbar from "@/examples/Navbars/Navbar.vue";
+import Navbar from "@/examples/Navbars/Navbar.vue";
+import { mapMutations } from "vuex";
 import AppFooter from "@/examples/Footer.vue";
-// import { mapMutations } from "vuex";
+
 
 export default {
   name: "App",
   components: {
     Sidenav,
     Configurator,
-    // Navbar,
+    Navbar,
     AppFooter
   },
   methods: {
-    // ...mapMutations(["toggleConfigurator", "navbarMinimize"])
+    ...mapMutations(["toggleConfigurator", "navbarMinimize"])
   },
   computed: {
     navClasses() {

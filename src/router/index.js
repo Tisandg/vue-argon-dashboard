@@ -7,6 +7,8 @@ import RTL from "../views/Rtl.vue";
 import Profile from "../views/Profile.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
+import Users from "../views/Users.vue";
+import Mapa from "../views/Mapa.vue";
 
 const routes = [
   {
@@ -23,6 +25,16 @@ const routes = [
     path: "/tables",
     name: "Tables",
     component: Tables,
+  },
+  {
+    path: "/users",
+    name: "Users",
+    component: Users,
+  },
+  {
+    path: "/rutas-seguras",
+    name: "Rutas Seguras",
+    component: Mapa,
   },
   {
     path: "/billing",

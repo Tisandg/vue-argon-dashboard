@@ -3,7 +3,7 @@
     <div class="pb-0 card-header mb-0">
       <h6>{{ title }}</h6>
       <p class="text-sm">
-        <i class="fa fa-arrow-up text-success"></i>
+        <!-- <i class="fa fa-arrow-up text-success"></i> -->
         <span class="font-weight-bold">{{detail1}}</span>
         {{detail2}}
       </p>
@@ -35,9 +35,14 @@ export default {
       type: String,
       default: "in 2021",
     },
+    inputData: {
+      type: Array,
+      default: () => [50, 40, 300, 220, 500, 250, 400, 230, 500],
+    },
   },
 
   mounted() {
+    console.log(this.inputData)
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
@@ -60,7 +65,7 @@ export default {
             // eslint-disable-next-line no-dupe-keys
             borderWidth: 3,
             fill: true,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+            data: this.inputData, //[50, 40, 300, 220, 500, 250, 400, 230, 500],
             maxBarThickness: 6,
           },
         ],

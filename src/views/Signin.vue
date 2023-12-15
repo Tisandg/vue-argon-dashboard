@@ -1,15 +1,15 @@
 <template>
-  <!-- <div class="container top-0 position-sticky z-index-sticky">
+  <div class="container top-0 position-sticky z-index-sticky">
     <div class="row">
       <div class="col-12">
         <navbar
-          isBlur="blur  border-radius-lg my-3 py-2 start-0 end-0 mx-4 shadow"
+          isBlur="blur border-radius-lg my-3 py-2 start-0 end-0 mx-4 shadow"
           v-bind:darkMode="true"
           isBtn="bg-gradient-success"
         />
       </div>
     </div>
-  </div> -->
+  </div>
 
   <!-- <argon-alert>
       <strong>Primary!</strong> This is a primary alert—check it out!
@@ -112,7 +112,7 @@
 </template>
 
 <script>
-// import Navbar from "@/examples/PageLayout/Navbar.vue";
+import Navbar from "@/examples/PageLayout/Navbar.vue";
 import ArgonInput from "@/components/ArgonInput.vue";
 // import ArgonSwitch from "@/components/ArgonSwitch.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
@@ -132,7 +132,7 @@ export default {
     }
   },
   components: {
-    // Navbar,
+    Navbar,
     ArgonInput,
     // ArgonSwitch,
     ArgonButton,
@@ -190,14 +190,14 @@ export default {
   },
   created() {
     this.$store.state.hideConfigButton = true;
-    // this.$store.state.showNavbar = false;
+    this.$store.state.showNavbar = false;
     this.$store.state.showSidenav = false;
     this.$store.state.showFooter = false;
     body.classList.remove("bg-gray-100");
   },
   beforeUnmount() {
     this.$store.state.hideConfigButton = false;
-    // this.$store.state.showNavbar = true;
+    this.$store.state.showNavbar = true;
     this.$store.state.showSidenav = true;
     this.$store.state.showFooter = true;
     body.classList.add("bg-gray-100");

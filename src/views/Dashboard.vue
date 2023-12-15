@@ -5,100 +5,106 @@
         <div class="row">
           <div class="col-lg-3 col-md-6 col-12">
             <card
-              :title="stats.money.title"
-              :value="stats.money.value"
-              :percentage="stats.money.percentage"
-              :iconClass="stats.money.iconClass"
-              :iconBackground="stats.money.iconBackground"
-              :detail="stats.money.detail"
+              :title="stats.participacion.title"
+              :value="stats.participacion.value"
+              :percentage="stats.participacion.percentage"
+              :iconClass="stats.participacion.iconClass"
+              :iconBackground="stats.participacion.iconBackground"
+              :detail="stats.participacion.detail"
               directionReverse
             ></card>
           </div>
           <div class="col-lg-3 col-md-6 col-12">
             <card
-              :title="stats.users.title"
-              :value="stats.users.value"
-              :percentage="stats.users.percentage"
-              :iconClass="stats.users.iconClass"
-              :iconBackground="stats.users.iconBackground"
-              :detail="stats.users.detail"
+              :title="stats.confianza.title"
+              :value="stats.confianza.value"
+              :percentage="stats.confianza.percentage"
+              :iconClass="stats.confianza.iconClass"
+              :iconBackground="stats.confianza.iconBackground"
+              :detail="stats.confianza.detail"
               directionReverse
             ></card>
           </div>
           <div class="col-lg-3 col-md-6 col-12">
             <card
-              :title="stats.clients.title"
-              :value="stats.clients.value"
-              :percentage="stats.clients.percentage"
-              :iconClass="stats.clients.iconClass"
-              :iconBackground="stats.clients.iconBackground"
-              :percentageColor="stats.clients.percentageColor"
-              :detail="stats.clients.detail"
+              :title="stats.alertas.title"
+              :value="stats.alertas.value"
+              :percentage="stats.alertas.percentage"
+              :iconClass="stats.alertas.iconClass"
+              :iconBackground="stats.alertas.iconBackground"
+              :percentageColor="stats.alertas.percentageColor"
+              :detail="stats.alertas.detail"
               directionReverse
             ></card>
           </div>
           <div class="col-lg-3 col-md-6 col-12">
             <card
-              :title="stats.sales.title"
-              :value="stats.sales.value"
-              :percentage="stats.sales.percentage"
-              :iconClass="stats.sales.iconClass"
-              :iconBackground="stats.sales.iconBackground"
-              :detail="stats.sales.detail"
+              :title="stats.cobertura.title"
+              :value="stats.cobertura.value"
+              :percentage="stats.cobertura.percentage"
+              :iconClass="stats.cobertura.iconClass"
+              :iconBackground="stats.cobertura.iconBackground"
+              :detail="stats.cobertura.detail"
               directionReverse
             ></card>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
+
           <div class="col-lg-7 mb-lg">
-            <!-- line chart -->
             <div class="card z-index-2">
-              <gradient-line-chart />
+              <gradient-line-chart
+                title="Información reportada"
+                detail1=""
+                detail2=""/>
             </div>
           </div>
+
           <div class="col-lg-5">
             <carousel />
           </div>
-        </div>
+
+        </div> -->
         <div class="row mt-4">
-          <div class="col-lg-7 mb-lg-0 mb-4">
+
+          <div class="col-lg-6 mb-lg-0 mb-4">
             <div class="card">
               <div class="p-3 pb-0 card-header">
                 <div class="d-flex justify-content-between">
-                  <h6 class="mb-2">Sales by Country</h6>
+                  <h6 class="mb-2">Incidentes recientes</h6>
                 </div>
               </div>
               <div class="table-responsive">
                 <table class="table align-items-center">
                   <tbody>
-                    <tr v-for="(sale, index) in sales" :key="index">
+                    <tr v-for="(indicente, index) in incidentes" :key="index">
                       <td class="w-30">
                         <div class="px-2 py-1 d-flex align-items-center">
-                          <div>
-                            <img :src="sale.flag" alt="Country flag" />
-                          </div>
+                          <!-- <div>
+                            <img :src="indicente.flag" alt="Country flag" />
+                          </div> -->
                           <div class="ms-4">
-                            <p class="mb-0 text-xs font-weight-bold">Country:</p>
-                            <h6 class="mb-0 text-sm">{{ sale.country }}</h6>
+                            <p class="mb-0 text-xs font-weight-bold">Ciudad:</p>
+                            <h6 class="mb-0 text-sm">{{ indicente.ciudad }}</h6>
                           </div>
                         </div>
                       </td>
                       <td>
                         <div class="text-center">
-                          <p class="mb-0 text-xs font-weight-bold">Sales:</p>
-                          <h6 class="mb-0 text-sm">{{ sale.sales }}</h6>
+                          <p class="mb-0 text-xs font-weight-bold">Reportero:</p>
+                          <h6 class="mb-0 text-sm">{{ indicente.reportero.nombre }}</h6>
                         </div>
                       </td>
                       <td>
                         <div class="text-center">
-                          <p class="mb-0 text-xs font-weight-bold">Value:</p>
-                          <h6 class="mb-0 text-sm">{{ sale.value }}</h6>
+                          <p class="mb-0 text-xs font-weight-bold">Confianza:</p>
+                          <h6 class="mb-0 text-sm">{{ indicente.confianza }}</h6>
                         </div>
                       </td>
                       <td class="text-sm align-middle">
                         <div class="text-center col">
-                          <p class="mb-0 text-xs font-weight-bold">Bounce:</p>
-                          <h6 class="mb-0 text-sm">{{ sale.bounce }}</h6>
+                          <p class="mb-0 text-xs font-weight-bold">Fuente:</p>
+                          <h6 class="mb-0 text-sm">{{ indicente.fuente }}</h6>
                         </div>
                       </td>
                     </tr>
@@ -107,9 +113,59 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-5">
-            <categories-card />
+
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="card">
+              <div class="p-3 pb-0 card-header">
+                <div class="d-flex justify-content-between">
+                  <h6 class="mb-2">Alertas recientes</h6>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center">
+                  <tbody>
+                    <tr v-for="(alerta, index) in incidentes" :key="index">
+                      <td class="w-30">
+                        <div class="px-2 py-1 d-flex align-items-center">
+                          <!-- <div>
+                            <img :src="indicente.flag" alt="Country flag" />
+                          </div> -->
+                          <div class="ms-4">
+                            <p class="mb-0 text-xs font-weight-bold">Ciudad:</p>
+                            <h6 class="mb-0 text-sm">{{ alerta.ciudad }}</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <p class="mb-0 text-xs font-weight-bold">Reportero:</p>
+                          <h6 class="mb-0 text-sm">{{ alerta.reportero.nombre }}</h6>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <p class="mb-0 text-xs font-weight-bold">Confianza:</p>
+                          <h6 class="mb-0 text-sm">{{ alerta.confianza }}</h6>
+                        </div>
+                      </td>
+                      <td class="text-sm align-middle">
+                        <div class="text-center col">
+                          <p class="mb-0 text-xs font-weight-bold">Fuente:</p>
+                          <h6 class="mb-0 text-sm">{{ alerta.fuente }}</h6>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
+
+          <!-- <div class="col-lg-6">
+            <categories-card
+              cardTitle="Alertas recientes"/>
+          </div> -->
+
         </div>
       </div>
     </div>
@@ -117,91 +173,104 @@
 </template>
 <script>
 import Card from "@/examples/Cards/Card.vue";
-import GradientLineChart from "@/examples/Charts/GradientLineChart.vue";
-import Carousel from "./components/Carousel.vue";
-import CategoriesCard from "./components/CategoriesCard.vue";
+// import CategoriesCard from "./components/CategoriesCard.vue";
+// import GradientLineChart from "@/examples/Charts/GradientLineChart.vue";
+// import Carousel from "./components/Carousel.vue";
 
-import US from "@/assets/img/icons/flags/US.png";
-import DE from "@/assets/img/icons/flags/DE.png";
-import GB from "@/assets/img/icons/flags/GB.png";
-import BR from "@/assets/img/icons/flags/BR.png";
+// import US from "@/assets/img/icons/flags/US.png";
+// import DE from "@/assets/img/icons/flags/DE.png";
+// import GB from "@/assets/img/icons/flags/GB.png";
+// import BR from "@/assets/img/icons/flags/BR.png";
 
 export default {
   name: "dashboard-default",
+  components: {
+    Card,
+    // GradientLineChart,
+    // Carousel,
+    // CategoriesCard,
+  },
   data() {
     return {
       stats: {
-        money: {
-          title: "Today's Money",
-          value: "$53,000",
-          percentage: "+55%",
-          iconClass: "ni ni-money-coins",
-          detail: "since yesterday",
+        // about the icons -> https://demos.creative-tim.com/vue-argon-design-system/documentation/foundation/icons.html
+        participacion: {
+          title: "Participación ciudadana",
+          value: "1,000",
+          // percentage: "+3%",
+          iconClass: "ni ni-active-40",
+          detail: "reportes en los ultimos 30 dias",
           iconBackground: "bg-gradient-primary",
         },
-        users: {
-          title: "Today's Users",
-          value: "2,300",
-          percentage: "+3%",
-          iconClass: "ni ni-world",
-          iconBackground: "bg-gradient-danger",
-          detail: "since last week",
-        },
-        clients: {
-          title: "New Clients",
-          value: "+3,462",
-          percentage: "-2%",
-          iconClass: "ni ni-paper-diploma",
-          percentageColor: "text-danger",
+        confianza: {
+          title: "Confianza sobre la información",
+          value: "89%",
+          // percentage: "+3%",
+          iconClass: "ni ni-check-bold",
           iconBackground: "bg-gradient-success",
-          detail: "since last quarter",
+          detail: "información reportada confiable",
         },
-        sales: {
-          title: "Sales",
-          value: "$103,430",
-          percentage: "+5%",
-          iconClass: "ni ni-cart",
+        alertas: {
+          title: "Alertas generadas",
+          value: "100",
+          // percentage: "-2%",
+          iconClass: "ni ni-bell-55",
+          percentageColor: "text-danger",
+          iconBackground: "bg-gradient-danger",
+          detail: "en los ultimos 30 dias",
+        },
+        cobertura: {
+          title: "Cobertura",
+          value: "3",
+          // percentage: "+5%",
+          iconClass: "ni ni-collection",
           iconBackground: "bg-gradient-warning",
-          detail: "than last month",
+          detail: "fuentes de información analizada",
         },
       },
-      sales: {
-        us: {
-          country: "United States",
-          sales: 2500,
-          value: "$230,900",
-          bounce: "29.9%",
-          flag: US,
+      incidentes: {
+        accidente_coche: {
+          ciudad: "Leganes",
+          reportero: {
+            id:1,
+            nombre:"Juan Perez",
+          },
+          fuente: "Reporte ciudadano",
+          confianza: "80",
+          // flag: SP,
         },
-        germany: {
-          country: "Germany",
-          sales: "3.900",
-          value: "$440,000",
-          bounce: "40.22%",
-          flag: DE,
+        terremoto: {
+          ciudad: "Madrid",
+          reportero: {
+            id:1,
+            nombre:"David Genoy",
+          },
+          fuente: "Twitter",
+          confianza: "75",
+          // flag: SP,
         },
-        britain: {
-          country: "Great Britain",
-          sales: "1.400",
-          value: "$190,700",
-          bounce: "23.44%",
-          flag: GB,
+        tiroteo: {
+          ciudad: "Murcia",
+          reportero: {
+            id:1,
+            nombre:"Murcia Noticias",
+          },
+          fuente: "Noticias",
+          confianza: "100%",
+          // flag: SP,
         },
-        brasil: {
-          country: "Brasil",
-          sales: "562",
-          value: "$143,960",
-          bounce: "32.14%",
-          flag: BR,
+        emergencia_sanitaria: {
+          ciudad: "Segovia",
+          reportero: {
+            id:1,
+            nombre:"Julian Besteiros",
+          },
+          fuente: "Reporte ciudadano",
+          confianza: "70%",
+          // flag: SP,
         },
       },
     };
-  },
-  components: {
-    Card,
-    GradientLineChart,
-    Carousel,
-    CategoriesCard,
   },
 };
 </script>
