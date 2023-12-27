@@ -31,6 +31,20 @@
         </sidenav-item>
       </li>
 
+      <li class="nav-item">
+        <sidenav-item
+          url="/notificaciones"
+          :class="getRoute() === 'notificaciones' ? 'active' : ''"
+          :navText="'Notificaciones'"
+        >
+          <template v-slot:icon>
+            <i
+              class="ni ni-chat-round text-success text-sm opacity-10"
+            ></i>
+          </template>
+        </sidenav-item>
+      </li>
+
       <li class="mt-3 nav-item">
         <h6 class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6">
           Información de usuarios
@@ -44,10 +58,11 @@
           :navText="'Usuarios'"
         >
           <template v-slot:icon>
-            <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+            <i class="ni ni-single-02 text-info text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>
+      
       <li class="nav-item">
         <sidenav-item
           url="/profile"
@@ -55,7 +70,7 @@
           :navText="'Mi perfil'"
         >
           <template v-slot:icon>
-            <i class="ni ni-circle-08 text-dark text-sm opacity-10"></i>
+            <i class="ni ni-circle-08 text-danger text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>

@@ -9,14 +9,11 @@
           <thead>
             <tr>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-              <th
-                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
               >Function</th>
-              <th
-                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
               >Status</th>
-              <th
-                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
               >Employed</th>
               <th class="text-secondary opacity-7"></th>
             </tr>

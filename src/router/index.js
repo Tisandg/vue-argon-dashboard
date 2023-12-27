@@ -8,7 +8,8 @@ import Profile from "../views/Profile.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
 import Users from "../views/Users.vue";
-import Mapa from "../views/Mapa.vue";
+import Map from "../views/Map.vue";
+import Notifications from "../views/Notifications.vue";
 
 const routes = [
   {
@@ -34,7 +35,12 @@ const routes = [
   {
     path: "/rutas-seguras",
     name: "Rutas Seguras",
-    component: Mapa,
+    component: Map,
+  },
+  {
+    path: "/notificaciones",
+    name: "Notificaciones",
+    component: Notifications,
   },
   {
     path: "/billing",
