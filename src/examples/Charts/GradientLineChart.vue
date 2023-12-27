@@ -10,7 +10,7 @@
     </div>
     <div class="p-3 card-body">
       <div class="chart">
-        <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+        <canvas :id="id" class="chart-canvas" height="300"></canvas>
       </div>
     </div>
   </div>
@@ -39,11 +39,15 @@ export default {
       type: Array,
       default: () => [50, 40, 300, 220, 500, 250, 400, 230, 500],
     },
+    id:{
+      type: String,
+      default: "chart-line"
+    }
   },
 
   mounted() {
-    console.log(this.inputData)
-    var ctx1 = document.getElementById("chart-line").getContext("2d");
+    // console.log(this.inputData)
+    var ctx1 = document.getElementById(this.id).getContext("2d");
 
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
 

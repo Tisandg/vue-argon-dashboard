@@ -36,7 +36,7 @@ Coded by www.creative-tim.com
       v-if="this.$store.state.showNavbar"
     />
 
-    <router-view />
+    <router-view :makeRequest="makeRequest"/>
     <app-footer v-show="this.$store.state.showFooter" />
     <configurator
       :toggle="toggleConfigurator"
@@ -52,6 +52,7 @@ import Sidenav from "./examples/Sidenav";
 import Configurator from "@/examples/Configurator.vue";
 import Navbar from "@/examples/Navbars/Navbar.vue";
 import { mapMutations } from "vuex";
+import axios from 'axios';
 import AppFooter from "@/examples/Footer.vue";
 
 
@@ -64,7 +65,31 @@ export default {
     AppFooter
   },
   methods: {
-    ...mapMutations(["toggleConfigurator", "navbarMinimize"])
+    ...mapMutations(["toggleConfigurator", "navbarMinimize"]),
+    makeRequest(METHOD, URL, DATA, callback, params=null){
+      axios({
+        method: METHOD,
+        url: URL,
+        data: DATA,
+        headers: {
+          // "Authorization": `Bearer ${this.keycloak.token}`,
+          "cache-control": "no-cache"
+        }
+      })
+      .then((res)=> {
+        if(callback){
+          if(params != null){
+            callback(res, params)
+          }else{
+            callback(res)
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error.message)
+        callback(null)
+      })
+    },
   },
   computed: {
     navClasses() {
