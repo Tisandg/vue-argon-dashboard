@@ -25,10 +25,11 @@
 </template>
 
 <script>
-import { defineProps, defineEmits } from 'vue';
 
-defineProps(['value'])
-defineEmits(['update:value'])
+// Next should be define inside script setup
+// import { defineProps, defineEmits } from 'vue';
+// defineProps(['value'])
+// defineEmits(['update:value'])
 
 export default {
   name: "argon-input",

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 <template>
-  <button class="btn mb-0" :class="getClasses(variant, color, size, fullWidth, active)">
+  <button class="btn mb-0" :class="getClasses(variant, color, size, fullWidth, active)" @click="action">
     <slot />
   </button>
 </template>
@@ -28,6 +28,10 @@ export default {
     active: {
       type: Boolean,
       default: false,
+    },
+    action: {
+      type: Function,
+      default: () => {console.log("Undefined button action")},
     },
   },
   methods: {

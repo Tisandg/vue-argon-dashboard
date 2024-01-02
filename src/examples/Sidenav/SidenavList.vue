@@ -7,8 +7,8 @@
 
       <li class="nav-item">
         <sidenav-item
-          url="/dashboard-default"
-          :class="getRoute() === 'dashboard-default' ? 'active' : ''"
+          url="/dashboard"
+          :class="getRoute() === 'dashboard' ? 'active' : ''"
           :navText="'Dashboard'"
         >
           <template v-slot:icon>

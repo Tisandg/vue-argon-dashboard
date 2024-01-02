@@ -169,7 +169,7 @@ export default {
         // Add your sign-in logic here
         // After successful sign-in, redirect to the dashboard
         console.log("redirecting...")
-        this.$router.push("/dashboard-default");
+        this.$router.push("/dashboard");
       }
 
       

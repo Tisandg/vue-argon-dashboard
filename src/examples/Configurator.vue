@@ -1,25 +1,15 @@
 <template>
   <div class="fixed-plugin">
-    <a
-      class="px-3 py-2 fixed-plugin-button text-dark position-fixed"
-      @click="toggle"
-    >
+    <a class="px-3 py-2 fixed-plugin-button text-dark position-fixed" @click="toggle">
       <i class="py-2 fa fa-cog"></i>
     </a>
     <div class="shadow-lg card">
       <div class="pt-3 pb-0 bg-transparent card-header">
-        <div
-          class=""
-          :class="this.$store.state.isRTL ? 'float-end' : 'float-start'"
-        >
-          <h5 class="mt-3 mb-0">Argon Configurator</h5>
-          <p>See our dashboard options.</p>
+        <div class="float-start">
+          <h5 class="mt-3 mb-0">Configuraciones</h5>
+          <p>Personaliza la interfaz del dashboard</p>
         </div>
-        <div
-          class="mt-4"
-          @click="toggle"
-          :class="this.$store.state.isRTL ? 'float-start' : 'float-end'"
-        >
+        <div class="float-end" @click="toggle">
           <button class="p-0 btn btn-link text-dark fixed-plugin-close-button">
             <i class="fa fa-close"></i>
           </button>
@@ -30,13 +20,10 @@
       <div class="pt-0 card-body pt-sm-3">
         <!-- Sidebar Backgrounds -->
         <div>
-          <h6 class="mb-0">Sidebar Colors</h6>
+          <h6 class="mb-0">Colores barra de navegación lateral</h6>
         </div>
         <a href="#" class="switch-trigger background-color">
-          <div
-            class="my-2 badge-colors"
-            :class="this.$store.state.isRTL ? 'text-end' : ' text-start'"
-          >
+          <div class="my-2 badge-colors text-start">
             <span
               class="badge filter bg-gradient-primary active"
               data-color="primary"
@@ -71,8 +58,8 @@
         </a>
         <!-- Sidenav Type -->
         <div class="mt-3">
-          <h6 class="mb-0">Sidenav Type</h6>
-          <p class="text-sm">Choose between 2 different sidenav types.</p>
+          <h6 class="mb-0">Tipos de barra de navegación lateral</h6>
+          <p class="text-sm">Escoge entre las siguientes opciones</p>
         </div>
         <div class="d-flex gap-2">
           <button
@@ -85,7 +72,7 @@
             "
             @click="sidebarType('bg-white')"
           >
-            White
+            Claro
           </button>
           <button
             id="btn-dark"
@@ -97,7 +84,7 @@
             "
             @click="sidebarType('bg-default')"
           >
-            Dark
+            Oscuro
           </button>
         </div>
         <p class="mt-2 text-sm d-xl-none d-block">
@@ -106,13 +93,10 @@
         <!-- Navbar Fixed -->
         <!-- Navbar Fixed -->
         <div class="mt-3 d-flex">
-          <h6 class="mb-0">Navbar Fixed</h6>
+          <h6 class="mb-0">Fijar barra de navegación</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
             <input
-              class="mt-1 form-check-input"
-              :class="
-                this.$store.state.isRTL ? 'float-end  me-auto' : ' ms-auto'
-              "
+              class="mt-1 form-check-input ms-auto"
               type="checkbox"
               id="navbarFixed"
               :checked="this.$store.state.isNavFixed"
@@ -123,8 +107,8 @@
 
         <hr class="horizontal dark my-4" />
         <div class="mt-2 mb-5 d-flex">
-          <h6 class="mb-0" :class="this.$store.state.isRTL ? 'ms-2' : ''">
-            Light / Dark
+          <h6 class="mb-0">
+            Tema Claro / Oscuro
           </h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
             <input
@@ -134,42 +118,6 @@
               @click="setDarkMode"
             />
           </div>
-        </div>
-        <a
-          class="btn bg-gradient-dark w-100"
-          href="https://www.creative-tim.com/product/vue-argon-dashboard"
-          >Free Download</a
-        >
-        <a
-          class="btn btn-outline-dark w-100"
-          href="https://www.creative-tim.com/learning-lab/vue/overview/argon-dashboard/"
-          >View documentation</a
-        >
-        <div class="text-center w-100">
-          <a
-            class="github-button"
-            href="https://github.com/creativetimofficial/vue-argon-dashboard"
-            data-icon="octicon-star"
-            data-size="large"
-            data-show-count="true"
-            aria-label="Star creativetimofficial/vue-argon-dashboard on GitHub"
-            >Star</a
-          >
-          <h6 class="mt-3">Thank you for sharing!</h6>
-          <a
-            href="https://twitter.com/intent/tweet?text=Check%20Vue%20Argon%20Dashboard%202%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%vuejs3&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%vue-argon-dashboard"
-            class="mb-0 btn btn-dark me-2"
-            target="_blank"
-          >
-            <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
-          </a>
-          <a
-            href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/vue-argon-dashboard"
-            class="mb-0 btn btn-dark me-2"
-            target="_blank"
-          >
-            <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
-          </a>
         </div>
       </div>
     </div>

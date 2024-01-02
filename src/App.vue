@@ -20,7 +20,7 @@ Coded by www.creative-tim.com
 
   <sidenav
     :custom_class="this.$store.state.mcolor"
-    :class="[this.$store.state.isTransparent,this.$store.state.isRTL ? 'fixed-end' : 'fixed-start']"
+    :class="[this.$store.state.isTransparent,'fixed-start']"
     v-if="this.$store.state.showSidenav"
   />
   <main
@@ -29,9 +29,7 @@ Coded by www.creative-tim.com
     <!-- nav -->
     <navbar
       :class="[navClasses]"
-      :textWhite="
-        this.$store.state.isAbsolute ? 'text-white opacity-8' : 'text-white'
-      "
+      :textWhite="this.$store.state.isAbsolute ? 'text-white opacity-8' : 'text-white'"
       :minNav="navbarMinimize"
       v-if="this.$store.state.showNavbar"
     />
