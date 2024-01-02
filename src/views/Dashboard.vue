@@ -263,7 +263,7 @@
 <script>
 import GradientLineChart from "@/examples/Charts/GradientLineChart.vue";
 import DonutChart from "@/examples/Charts/DonutChart.vue";
-import DataTable from "./components/DataTable.vue";
+import DataTable from "@/components/DataTable.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
 import Card from "@/examples/Cards/Card.vue";
 import VueMultiselect from 'vue-multiselect'
@@ -551,7 +551,7 @@ export default {
     updateCharts(){
       let daysDifference = this.getDaysDifference();
       if(this.startDate == "") daysDifference = 30;
-      
+
       var last30Dates = [];
       var currentDate = new Date();
 
