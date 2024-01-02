@@ -58,12 +58,6 @@ export default {
     initChart(){
       console.log("init chart:", this.inputData);
       var ctx1 = document.getElementById(this.id).getContext("2d");
-
-      // var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-      // gradientStroke1.addColorStop(1, "rgba(94, 114, 228, 0.2)");
-      // gradientStroke1.addColorStop(0.2, "rgba(94, 114, 228, 0.0)");
-      // gradientStroke1.addColorStop(0, "rgba(94, 114, 228, 0)");
-
       this.myChart = new Chart(ctx1, {
         type: "doughnut",
         data: {
@@ -73,11 +67,6 @@ export default {
               label: this.labelPoint,
               data: this.inputData,
               backgroundColor: ["#f5365c", "#2dce89", "#825ee4"],
-              // // eslint-disable-next-line no-dupe-keys
-              // borderWidth: 3,
-              // fill: true,
-              // data: this.inputData[0], //[50, 40, 300, 220, 500, 250, 400, 230, 500],
-              // maxBarThickness: 6,
             }
           ],
         },

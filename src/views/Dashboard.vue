@@ -433,11 +433,9 @@ export default {
       var adjustedYear = currentDate.getFullYear();
       var adjustedMonth = (currentDate.getMonth() + 1).toString().padStart(2, '0');
       var adjustedDay = currentDate.getDate().toString().padStart(2, '0');
-      var adjustedHours = currentDate.getHours().toString().padStart(2, '0');
-      var adjustedMinutes = currentDate.getMinutes().toString().padStart(2, '0');
 
       // Format the adjusted date and time as a string
-      var formattedAdjustedDateTime = `${adjustedYear}-${adjustedMonth}-${adjustedDay} ${adjustedHours}:${adjustedMinutes}`;
+      var formattedAdjustedDateTime = `${adjustedYear}-${adjustedMonth}-${adjustedDay}`;
       return formattedAdjustedDateTime
     },
     updateMetrics(url){
@@ -551,64 +549,59 @@ export default {
      * Update the charts with the new data
      */
     updateCharts(){
-      // console.log("Updating charts");
-      //get the days difference
       let daysDifference = this.getDaysDifference();
-      if(daysDifference > 30){
-        console.log("The days difference is greater than 30");
-      }else{
-        var last30Dates = [];
-        var currentDate = new Date();
+      if(this.startDate == "") daysDifference = 30;
+      
+      var last30Dates = [];
+      var currentDate = new Date();
 
-        // Loop to generate the last 30 dates
-        for (var i = 0; i < 30; i++) {
-          var dateForIteration = new Date(currentDate);
-          dateForIteration.setDate(currentDate.getDate() - i);
+      // Loop to generate the last 30 dates
+      for (var i = 0; i < daysDifference; i++) {
+        var dateForIteration = new Date(currentDate);
+        dateForIteration.setDate(currentDate.getDate() - i);
 
-          // Format the date as YYYY-MM-DD
-          var formattedDate = dateForIteration.toISOString().split('T')[0];
+        // Format the date as YYYY-MM-DD
+        var formattedDate = dateForIteration.toISOString().split('T')[0];
 
-          // Add the formatted date to the array
-          last30Dates.push(formattedDate);
-        }
-
-        //Reorder the array from the oldest to the newest date
-        last30Dates.reverse();
-        
-        //Now, sum the values of each day
-        let totalValues = [];
-        for(let i = 0; i < last30Dates.length; i++){
-          let totalValue = 0;
-          for(let j = 0; j < this.reportItems.length; j++){
-            if(this.reportItems[j].fecha.split(' ')[0] == last30Dates[i]){
-              totalValue += 1;
-            }
-          }
-          for(let j = 0; j < this.twitterItems.length; j++){
-            if(this.twitterItems[j].fecha.split(' ')[0] == last30Dates[i]){
-              totalValue += 1;
-            }
-          }
-          for(let j = 0; j < this.newsItems.length; j++){
-            if(this.newsItems[j].fecha.split(' ')[0] == last30Dates[i]){
-              totalValue += 1;
-            }
-          }
-          totalValues.push(totalValue);
-        }
-
-        this.chartDataTotal.values = totalValues;
-        this.chartDataTotal.labels = last30Dates;
-        this.$refs.dataTotalChart.updateChart(totalValues, last30Dates);
-
-        //Update second chart
-        let sourceSize = [this.reportItems.length, this.twitterItems.length, this.newsItems.length];
-        let labels = ["Reportes", "Twitter", "Noticias"];
-        this.chartDataSources.values = sourceSize;
-        this.chartDataSources.labels= labels;
-        this.$refs.dataSourcesChart.updateChart(sourceSize, labels);
+        // Add the formatted date to the array
+        last30Dates.push(formattedDate);
       }
 
+      //Reorder the array from the oldest to the newest date
+      last30Dates.reverse();
+      
+      //Now, sum the values of each day
+      let totalValues = [];
+      for(let i = 0; i < last30Dates.length; i++){
+        let totalValue = 0;
+        for(let j = 0; j < this.reportItems.length; j++){
+          if(this.reportItems[j].fecha.split(' ')[0] == last30Dates[i]){
+            totalValue += 1;
+          }
+        }
+        for(let j = 0; j < this.twitterItems.length; j++){
+          if(this.twitterItems[j].fecha.split(' ')[0] == last30Dates[i]){
+            totalValue += 1;
+          }
+        }
+        for(let j = 0; j < this.newsItems.length; j++){
+          if(this.newsItems[j].fecha.split(' ')[0] == last30Dates[i]){
+            totalValue += 1;
+          }
+        }
+        totalValues.push(totalValue);
+      }
+
+      this.chartDataTotal.values = totalValues;
+      this.chartDataTotal.labels = last30Dates;
+      this.$refs.dataTotalChart.updateChart(totalValues, last30Dates);
+
+      //Update second chart
+      let sourceSize = [this.reportItems.length, this.twitterItems.length, this.newsItems.length];
+      let labels = ["Reportes", "Twitter", "Noticias"];
+      this.chartDataSources.values = sourceSize;
+      this.chartDataSources.labels= labels;
+      this.$refs.dataSourcesChart.updateChart(sourceSize, labels);
     },
     getLastDayOfMonth(year, month){
       // Note: Month is 0-indexed in JavaScript (January is 0, February is 1, etc.)
@@ -618,13 +611,23 @@ export default {
     filterData(){
       
       //check if the dates are correct
-      if(this.startDate > this.endDate){
+      if(this.startDate != "" && this.endDate != "" && this.startDate > this.endDate){
         console.log("The start date is greater than the end date")
         return
       }
 
+      if(this.startDate != "" && this.endDate == ""){
+        //compare with the current date
+        var currentDate = new Date();
+        if(this.startDate > currentDate){
+          console.log("The start date is greater than the current date")
+          return
+        }
+      }
+
       //Check the values of each filter
       let location = this.valueLocationSelect['name']
+      console.log("Location extracted: ["+location+"]")
       let startDate = this.startDate
       let endDate = this.endDate
       let sources = []
@@ -646,7 +649,7 @@ export default {
           url += "tables="+sources[i]
         }
       }
-      if(location != ""){
+      if(location != "" && location != undefined){
         if(url.slice(-1) != "?") url += "&"
         url += "locations="+location
       }
@@ -667,26 +670,6 @@ export default {
       this.updateMetrics(url)
     }
   },
-  watch:{
-    // chartDataTotal(newV, oldV){
-    //   console.log("Changed"); 
-    //   if(newV != oldV){
-    //     this.$refs.dataTotalChart.updateChart();
-    //     console.log("Chart data total values changed")
-    //   }
-    // }
-    // metrics:{
-    //   //If the user has changed the central, update the new values saved in the variable store.
-    //   handler(val, oldVal){
-    //     console.log("Data of metrics updated");
-    //     console.log(val, oldVal);
-    //     this.updateCharts();
-    //     // console.log("Value changed:", val.values);
-    //     // console.log("Chart data total values changed");
-    //   },
-    //   deep:true
-    // },
-  }
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>

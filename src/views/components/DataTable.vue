@@ -99,12 +99,6 @@ import EasyDataTable from 'vue3-easy-data-table'
 import { ref } from "vue";
 
 export default {
-  // setup(){
-  //   const dataTable = ref(null)
-  //   return{
-  //     dataTable
-  //   }
-  // },
   data(){
     return{
       searchField: ref(""),
