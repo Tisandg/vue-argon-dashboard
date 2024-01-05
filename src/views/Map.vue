@@ -2,7 +2,7 @@
   <div class="py-4 container-fluid">
     <div class=" row">
       <div class="col-12">
-        <map-card />
+        <map-card title="Planificador de Rutas Seguras"/>
       </div>
     </div>
   </div>

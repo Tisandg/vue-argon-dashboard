@@ -263,7 +263,7 @@
 <script>
 import GradientLineChart from "@/examples/Charts/GradientLineChart.vue";
 import DonutChart from "@/examples/Charts/DonutChart.vue";
-import DataTable from "@/components/DataTable.vue";
+import DataTable from "@/views/components/DataTable.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
 import Card from "@/examples/Cards/Card.vue";
 import VueMultiselect from 'vue-multiselect'

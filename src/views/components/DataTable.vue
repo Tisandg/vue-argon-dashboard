@@ -3,10 +3,23 @@
     <div class="card-header pb-0">
       <h6>{{ title }}</h6>
     </div>
-    <div class="card-body px-0 pt-0 pb-2">
+    <div class="card-body mt-3 pt-0 pb-2">
+      <div class="row mb-2">
+        <div class="col-5 search-input">
+          <span>Columna:</span>
+          <select v-model="searchField" class="form-control">
+            <option value="" selected>Seleccione una opción</option>
+            <option v-for="option, index in searchFieldOptions" :key="index">{{ option }}</option>
+          </select>
+        </div>
+        <div class="col-7 search-input">
+          <span>Buscar:</span>
+          <input type="text" v-model="searchValue" class="form-control">
+        </div>
+      </div>
       <div class="table-responsive p-0">
-        <!-- <div class="table align-items-center mb-0"> -->
-          <EasyDataTable
+
+        <EasyDataTable
             ref="dataTable"
             :headers="headers"
             :items="items"
@@ -17,13 +30,67 @@
             rowsPerPageMessage="Filas por página"
             rowsOfPageSeparatorMessage="de"
             emptyMessage="No hay datos disponibles"
-            table-class-name="table align-items-center mb-0 custom-datatable"
+            table-class-name="table align-items-center custom-datatable"
             buttons-pagination
             :rows-items="rowItemsOptions"
             :rows-per-page="rowsT"
           >
+            <template #item-approved="item">
+              <div style="text-align: center;">
+                <span>{{ item.approved != null? item.approved : "No definido" }}</span>
+              </div>
+            </template>
+            <template #item-acciones="item">
+              <argon-button 
+                v-for="(actionItem, index) in headers[headers.length-1].params"
+                :key="index"
+                color="info"
+                size="sm"
+                class=""
+                :action="() => $emit(actionItem.action, item)">
+                  <i class="text-lg opacity-10" :class="actionItem.icon" aria-hidden="true"></i>
+              </argon-button>
+
+              <!-- <div
+                
+                class="text-center icon icon-shape"
+                :class="`${actionItem.backgroundClass} ${'border-radius-2xl'}`"
+                @click="$emit(actionItem.action, item)">
+                  <i class="text-lg opacity-10" :class="actionItem.icon" aria-hidden="true"></i>
+              </div> -->
+              
+              <!-- <Icon
+                icon="material-symbols:edit"
+                class="ni ni-active-40"
+                color="#41b080"
+                width="22"
+                @click="$emit('edit-item', item)"
+              ></Icon> -->
+
+              <!-- <Icon 
+                icon="mdi:trash"
+                class="icon"
+                color="#41b080"
+                width="22"
+                @click="$emit('delete-item', item)"
+                /> -->
+
+              <!-- <i class="fa fa-bullhorn" aria-hidden="true" @click="$emit('notify-item', item)"></i> -->
+              <!-- <Icon
+                icon="carbon:notification"
+                class="icon"
+                color="#41b080"
+                width="22"
+                @click="$emit('notify-item', item)"
+              ></Icon>-->
+            </template>
+
           </EasyDataTable>
 
+        
+
+          
+        
         <!-- </div> -->
        
 
@@ -97,8 +164,10 @@
 <script>
 import EasyDataTable from 'vue3-easy-data-table'
 import { ref } from "vue";
+import ArgonButton from "@/components/ArgonButton.vue";
 
 export default {
+  emits: ['notify-item','edit-item','delete-item'],
   data(){
     return{
       searchField: ref(""),
@@ -119,7 +188,7 @@ export default {
       ],
     }
   },
-  components:{ EasyDataTable },
+  components:{ EasyDataTable, ArgonButton},
   props: {
     headers: Array,
     items: Array,
