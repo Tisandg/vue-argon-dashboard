@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
-import Tables from "../views/Tables.vue";
-import Billing from "../views/Billing.vue";
 import Profile from "../views/Profile.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
@@ -21,11 +19,6 @@ const routes = [
     component: Dashboard,
   },
   {
-    path: "/tables",
-    name: "Tables",
-    component: Tables,
-  },
-  {
     path: "/users",
     name: "Users",
     component: Users,
@@ -39,11 +32,6 @@ const routes = [
     path: "/notificaciones",
     name: "Notificaciones",
     component: Notifications,
-  },
-  {
-    path: "/billing",
-    name: "Billing",
-    component: Billing,
   },
   {
     path: "/profile",
